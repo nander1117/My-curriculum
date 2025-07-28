@@ -4,7 +4,10 @@ const HEADER_SVG: Asset = asset!("/assets/header.svg");
 
 #[component]
 pub fn Hero() -> Element {
-    let mut count = use_signal(|| 0);
+    let mut count: Signal<usize> = use_signal(|| 0);
+    fn increment(e: Event<FormData>, count: &mut Signal<usize>) {
+        count.set(e.data().value().len());
+    }
     rsx! {
         // We can create elements inside the rsx macro with the element name followed by a block of attributes and children.
         div {
@@ -12,12 +15,15 @@ pub fn Hero() -> Element {
             id: "hero",
             // After all attributes are defined, we can define child elements and components
             img { src: HEADER_SVG, id: "header" }
-            div { class: " shadow shadow-white p-2 m-5 bg-white border-2 border-amber-300 rounded text-black text-center flex items-center justify-center",
+            label { class: "has-invalid:text-blue-700 shadow shadow-white p-2 m-5 bg-white border-2 border-amber-300 rounded text-black text-center flex items-center justify-center",
                 input {
-                    oninput: move |e| count.set(e.data().value().len()),
-                    class: "text-black text-center",
+                    required: true,
+                    pattern: "[a-zA-Z0-9_]+",
+                    oninput: move |e| increment(e, &mut count),
+                    class: "text-black text-center invalid:text-red-500 outline-none select-none",
+                    placeholder: "Type something here...",
                 }
-                "{count}"
+                h1 { class: "p-2", "{count}" }
             }
             div { id: "links",
                 // The RSX macro also supports text nodes surrounded by quotes

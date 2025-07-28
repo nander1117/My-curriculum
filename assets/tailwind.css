@@ -7,7 +7,9 @@
     'Noto Color Emoji';
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-amber-300: oklch(87.9% 0.169 91.605);
+    --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -238,6 +240,28 @@
       --tw-shadow-color: color-mix(in oklab, var(--color-white) var(--tw-shadow-alpha), transparent);
     }
   }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .invalid\:text-red-500 {
+    &:invalid {
+      color: var(--color-red-500);
+    }
+  }
+  .has-invalid\:text-blue-700 {
+    &:has(*:invalid) {
+      color: var(--color-blue-700);
+    }
+  }
+}
+* {
+  -webkit-user-select: none;
+  user-select: none;
 }
 @property --tw-rotate-x {
   syntax: "*";
