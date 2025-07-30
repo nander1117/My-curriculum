@@ -9,13 +9,9 @@ pub fn Hero() -> Element {
         count.set(e.data().value().len());
     }
     rsx! {
-        // We can create elements inside the rsx macro with the element name followed by a block of attributes and children.
-        div {
-            // Attributes should be defined in the element before any children
-            id: "hero",
-            // After all attributes are defined, we can define child elements and components
+        div { id: "hero", class: "bg-gray-900",
             img { src: HEADER_SVG, id: "header" }
-            label { class: "has-invalid:text-blue-700 shadow shadow-white p-2 m-5 bg-white border-2 border-amber-300 rounded text-black text-center flex items-center justify-center",
+            label { class: "has-invalid:text-blue-700 shadow  shadow-white p-2 m-5 bg-white border-2 border-amber-300 rounded text-black text-center flex items-center justify-center",
                 input {
                     required: true,
                     pattern: "[a-zA-Z0-9_]+",
