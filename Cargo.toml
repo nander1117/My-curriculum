@@ -8,6 +8,9 @@ edition = "2021"
 
 [dependencies]
 dioxus = { version = "0.7.0-alpha.3", features = ["router"] }
+dioxus-free-icons = { version = "0.10.0-alpha.1", features = ["bootstrap"] }
+[target.'cfg(target_os = "android")'.dependencies]
+openssl = { version = "0.10.73", features = ["vendored"] }
 
 [features]
 default = ["web"]

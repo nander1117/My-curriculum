@@ -851,6 +851,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "dioxus-free-icons"
+version = "0.10.0-alpha.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b419b719fb547d9b6499880b6ba81f0e52b6c24b06cc24199354e3ccf4e0a1e"
+dependencies = [
+ "dioxus",
+]
+
+[[package]]
 name = "dioxus-fullstack"
 version = "0.7.0-alpha.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2612,6 +2621,8 @@ name = "my-curriculum"
 version = "0.1.0"
 dependencies = [
  "dioxus",
+ "dioxus-free-icons",
+ "openssl",
 ]
 
 [[package]]
