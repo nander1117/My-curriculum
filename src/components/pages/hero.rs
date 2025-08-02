@@ -13,7 +13,7 @@ pub fn Hero() -> Element {
             img { src: HEADER_SVG, id: "header" }
             label { class: "peer has-invalid:text-blue-700 shadow  shadow-white p-2 m-5 bg-white border-2 border-amber-300 rounded text-black text-center flex items-center justify-center",
                 input {
-                    required: true,
+                    required: false,
                     pattern: "[a-zA-Z0-9_]+",
                     oninput: move |e| increment(e, &mut count),
                     class: " text-black text-center invalid:text-red-500 outline-none select-none",
@@ -22,7 +22,7 @@ pub fn Hero() -> Element {
                 h1 { class: "p-2", "{count}" }
             }
             button {
-                class: " peer-has-invalid:bg-blue-800  bg-amber-600 p-2 rounded-2xl border border-amber-300  ",
+                class: " peer-has-invalid:pointer-events-none hover:bg-amber-900 peer-has-invalid:bg-blue-800  bg-amber-600 p-2 rounded-2xl border border-amber-300  ",
                 onclick: move |_| count.set(0),
                 "👋 Hello Dioxus"
             }
