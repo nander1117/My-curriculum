@@ -10,7 +10,6 @@ edition = "2021"
 dioxus = { version = "0.7.0-alpha.3", features = ["router"] }
 dioxus-free-icons = { version = "0.10.0-alpha.1", features = ["bootstrap"] }
 
-openssl = { version = "0.10.73", features = ["vendored"] }
 
 [features]
 default = ["web"]
