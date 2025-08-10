@@ -14,10 +14,12 @@ pub fn ButtonIcon() -> Element {
 }
 #[component]
 fn icon() -> Element {
-    rsx!(Icon {
-        width: 30,
-        height: 30,
-        fill: "black",
-        icon: BsExclamationCircle,
-    })
+    rsx!(
+        Icon {
+            width: 30,
+            height: 30,
+            fill: "black",
+            icon: BsExclamationCircle,
+        }
+    )
 }
