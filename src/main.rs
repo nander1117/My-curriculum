@@ -1,13 +1,11 @@
-use components::Blur;
-use dioxus::prelude::*;
+use dioxus::{document, prelude::*};
+use global::{components::molecules::Blur, utils::scripts::init_scripts_for_app};
 use routes::Route;
-use utils::scripts::come_back_please;
 
-mod body;
-mod components;
-mod navbar;
+mod global;
+mod layout;
+mod pages;
 mod routes;
-mod utils;
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");
@@ -18,10 +16,15 @@ fn main() {
 
 #[component]
 fn App() -> Element {
-    come_back_please();
+    init_scripts_for_app();
     rsx! {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: TAILWIND_CSS }
+        // deleted al agregar fullstack
+        script {
+            src: "https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js",
+            defer: "true",
+        }
         Router::<Route> {}
         Blur {}
     }

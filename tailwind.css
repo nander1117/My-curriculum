@@ -1,5 +1,70 @@
 @import "tailwindcss";
-
+@plugin "daisyui";
+@plugin "tailwindcss-motion";
+@plugin "unocss-preset-tailwindcss-motion";
+@plugin "tailwindcss-intersect";
 * {
   @apply select-none;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(13% 0.028 261.692);
+  --color-base-200: oklch(21% 0.034 264.665);
+  --color-base-300: oklch(27% 0.033 256.848);
+  --color-base-content: oklch(96% 0.003 264.542);
+  --color-primary: oklch(75% 0.183 55.934);
+  --color-primary-content: oklch(26% 0.079 36.259);
+  --color-secondary: oklch(70% 0.183 293.541);
+  --color-secondary-content: oklch(28% 0.141 291.089);
+  --color-accent: oklch(70% 0.191 22.216);
+  --color-accent-content: oklch(25% 0.092 26.042);
+  --color-neutral: oklch(37% 0.034 259.733);
+  --color-neutral-content: oklch(98% 0.002 247.839);
+  --color-info: oklch(70% 0.165 254.624);
+  --color-info-content: oklch(28% 0.091 267.935);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(26% 0.051 172.552);
+  --color-warning: oklch(75% 0.183 55.934);
+  --color-warning-content: oklch(26% 0.079 36.259);
+  --color-error: oklch(71% 0.202 349.761);
+  --color-error-content: oklch(28% 0.109 3.907);
+  --radius-selector: 0.5rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+.animation-navbar {
+  --delay: 200ms;
+  @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)];
+}
+.animation-sidebar {
+  --delay: 500ms;
+
+  @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)];
+  @apply transition-all duration-1000 transition-discrete;
+  &:has(*:checked) {
+    @apply max-w-0;
+  }
+}
+.animation-section {
+  --delay: 500ms;
+
+  /*only motion*/
+  @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)] lg:[--delay:900ms];
+
+  @apply transition-all duration-1000;
+
+  /*peer-has-checked => peer is sidebar*/
+  &:is(:where(.peer):has(*:checked) ~ *) {
+    @apply w-[29999px];
+  }
 }
