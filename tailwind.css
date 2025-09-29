@@ -32,9 +32,7 @@
   --color-warning-content: oklch(26% 0.079 36.259);
   --color-error: oklch(71% 0.202 349.761);
   --color-error-content: oklch(28% 0.109 3.907);
-  --radius-selector: 0.5rem;
-  --radius-field: 1rem;
-  --radius-box: 1rem;
+
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -42,29 +40,86 @@
   --noise: 0;
 }
 
-.animation-navbar {
-  --delay: 200ms;
-  @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)];
-}
-.animation-sidebar {
-  --delay: 500ms;
+@layer utilities {
+  .animation-navbar {
+    --delay: 200ms;
+    @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)];
+  }
+  .animation-sidebar {
+    --delay: 500ms;
 
-  @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)];
-  @apply transition-all duration-1000 transition-discrete;
-  &:has(*:checked) {
-    @apply max-w-0;
+    @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)];
+    @apply transition-all duration-1000 transition-discrete flex-wrap;
+    &:has(*:checked) {
+      @apply max-w-0 hidden;
+    }
+  }
+  .animation-section {
+    --delay: 500ms;
+
+    /*only motion*/
+    @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)] lg:[--delay:900ms];
+
+    @apply transition-all duration-1000;
+
+    /*peer-has-checked => peer is sidebar*/
+    &:is(:where(.peer):has(*:checked) ~ *) {
+      @apply w-[29999px];
+    }
   }
 }
-.animation-section {
-  --delay: 500ms;
-
-  /*only motion*/
-  @apply motion-translate-x-in-[-5%] motion-translate-y-in-[0%] motion-opacity-in-[0%] motion-blur-in-[5px] motion-delay-[var(--delay)] lg:[--delay:900ms];
-
-  @apply transition-all duration-1000;
-
-  /*peer-has-checked => peer is sidebar*/
-  &:is(:where(.peer):has(*:checked) ~ *) {
-    @apply w-[29999px];
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+@keyframes glitch-1 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(-5px, -5px);
+  }
+  60% {
+    transform: translate(5px, 5px);
+  }
+  80% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-2 {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(5px, -5px);
+  }
+  50% {
+    transform: translate(-5px, 5px);
+  }
+  75% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-glitch-1 {
+  animation: glitch-1 2.5s infinite;
+}
+.animate-glitch-2 {
+  animation: glitch-2 3s infinite;
 }
