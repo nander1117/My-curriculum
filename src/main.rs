@@ -1,5 +1,8 @@
 use dioxus::{document, prelude::*};
-use global::{components::molecules::Blur, utils::scripts::init_scripts_for_app};
+use global::{
+    components::molecules::{Blur, Loading},
+    utils::scripts::init_scripts_for_app,
+};
 use routes::Route;
 
 mod global;
@@ -18,13 +21,10 @@ fn main() {
 fn App() -> Element {
     init_scripts_for_app();
     rsx! {
-        document::Link { rel: "icon", href: FAVICON }
-        document::Link { rel: "stylesheet", href: TAILWIND_CSS }
-        // deleted al agregar fullstack
-        script {
-            src: "https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js",
-            defer: "true",
-        }
+        document::Link { fetchpriority: "high", rel: "icon", href: FAVICON }
+
+        document::Link { fetchpriority: "high", rel: "stylesheet", href: TAILWIND_CSS }
+        Loading {}
         Router::<Route> {}
         Blur {}
     }
