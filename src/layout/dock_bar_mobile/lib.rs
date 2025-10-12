@@ -1,23 +1,16 @@
 use crate::routes::Route;
 use dioxus::prelude::*;
 
-enum Stay {
-    Home,
-    Blog,
-    Settings,
-}
-
 #[component]
 pub fn DockBarMobile() -> Element {
-    let stay = use_signal(|| Stay::Home);
     rsx!(
         div {
-            class: "dock | md:hidden border-t border-gray-200 dark:border-gray-700 animation-dock",
-            style: "--dock-height:4rem;",
+            class: "dock | md:hidden border-t border-gray-200 dark:border-gray-700  animation-dock p-0 [--dock-height:4rem]",
+            style: ";",
 
-            ButtonHome { stay }
-            ButtonBlog { stay }
-            button {
+            ButtonPorfolio {}
+            ButtonBlog {}
+            button { class: "m-0",
                 svg {
                     class: "size-[1.2em]",
                     view_box: "0 0 24 24",
@@ -53,16 +46,16 @@ pub fn DockBarMobile() -> Element {
 }
 
 #[component]
-fn ButtonHome(stay: Signal<Stay>) -> Element {
-    let active = match *stay.read() {
-        Stay::Home => "dock-active",
+fn ButtonPorfolio() -> Element {
+    let active = match use_route() {
+        Route::Porfolio {} => "dock-active",
         _ => "",
     };
     rsx!(
         Link {
-            onclick: move |_| stay.set(Stay::Home),
-            to: Route::Home {},
+            to: Route::Porfolio {},
             class: format!("{active} | my-2 text-gray-700  dark:text-gray-200"),
+            {}
 
             svg {
                 "data-label": "Home",
@@ -107,14 +100,13 @@ fn ButtonHome(stay: Signal<Stay>) -> Element {
 }
 
 #[component]
-fn ButtonBlog(stay: Signal<Stay>) -> Element {
-    let active = match *stay.read() {
-        Stay::Blog => "dock-active",
+fn ButtonBlog() -> Element {
+    let active = match use_route() {
+        Route::Blog { id: _ } => "dock-active",
         _ => "",
     };
     rsx!(
         Link {
-            onclick: move |_| stay.set(Stay::Blog),
             to: Route::Blog { id: 1 },
             class: format!("{active} | my-2 text-gray-700  dark:text-gray-200"),
             svg {
