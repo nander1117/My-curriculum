@@ -1,5 +1,5 @@
 use crate::layout::Layout;
-use crate::pages::{blog::Blog, home::Home, not_found::NotFound};
+use crate::pages::{blog::Blog, not_found::NotFound, porfolio::Porfolio};
 use dioxus::prelude::*;
 
 #[derive(Debug, Clone, Routable, PartialEq)]
@@ -7,7 +7,7 @@ use dioxus::prelude::*;
 pub enum Route {
     #[layout(Layout)]
         #[route("/")]
-        Home {},
+        Porfolio {},
         #[route("/blog/:id")]
         Blog { id: i32 },
     #[end_layout]
