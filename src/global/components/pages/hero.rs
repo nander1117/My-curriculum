@@ -12,13 +12,12 @@ pub fn Hero() -> Element {
     }
 
     rsx! (
-        div {
-            id: "hero",
-            class: "bg-gray-900 p-4 motion-scale-in-[0.5] motion-opacity-in-[20%] motion-blur-in-[20px] motion-ease-in-out",
+        div { id: "hero", class: " w-full p-4 animation-apareal.",
             calendar-date { class: "cally bg-base-100 border border-base-300 shadow-lg rounded-box",
                 calendar-month {}
             }
             img {
+                fetchpriority: "high",
                 src: HEADER_SVG,
                 id: "header",
                 alt: "header",
@@ -51,7 +50,7 @@ pub fn Hero() -> Element {
                 }
             }
             button {
-                class: "cursor-pointer peer-has-invalid:pointer-events-none m-2 hover:bg-amber-900 peer-has-invalid:bg-blue-400  bg-amber-600 p-2 rounded-2xl border border-amber-300  motion-scale-in-[0] motion-translate-x-in-[185%] motion-translate-y-in-[98%] motion-rotate-in-[2000deg] motion-blur-in-[30px] motion-duration-[0.48s] motion-duration-[0.70s]/scale motion-delay-[0.52s]/rotate motion-duration-[1.00s]/blur motion-ease-spring-bouncier rotate-4",
+                class: "btn | cursor-pointer peer-has-invalid:pointer-events-none m-2 hover:bg-amber-900 peer-has-invalid:bg-blue-400  bg-amber-600 p-2 rounded-2xl border border-amber-300  motion-scale-in-[0] motion-translate-x-in-[185%] motion-translate-y-in-[98%] motion-rotate-in-[2000deg] motion-blur-in-[30px] motion-duration-[0.48s] motion-duration-[0.70s]/scale motion-delay-[0.52s]/rotate motion-duration-[1.00s]/blur motion-ease-spring-bouncier rotate-4",
                 onclick: move |_| count.set(0),
                 "👋 Hello Dioxus"
             }
@@ -72,45 +71,6 @@ pub fn Hero() -> Element {
                     class: "btn btn-xl btn-neutral motion-preset-flomoji-[🎉]",
                     onmouseover: move |_| change.set(true),
                     "hola"
-                }
-                label { class: "toggle text-base-content",
-                    input {
-                        class: "theme-controller",
-                        r#type: "checkbox",
-                        value: "synthwave",
-                    }
-                    svg {
-                        view_box: "0 0 24 24",
-                        xmlns: "http://www.w3.org/2000/svg",
-                        g {
-                            fill: "none",
-                            stroke: "currentColor",
-                            stroke_linecap: "round",
-                            stroke_linejoin: "round",
-                            stroke_width: "2",
-                            circle { cx: "12", cy: "12", r: "4" }
-                            path { d: "M12 2v2" }
-                            path { d: "M12 20v2" }
-                            path { d: "m4.93 4.93 1.41 1.41" }
-                            path { d: "m17.66 17.66 1.41 1.41" }
-                            path { d: "M2 12h2" }
-                            path { d: "M20 12h2" }
-                            path { d: "m6.34 17.66-1.41 1.41" }
-                            path { d: "m19.07 4.93-1.41 1.41" }
-                        }
-                    }
-                    svg {
-                        view_box: "0 0 24 24",
-                        xmlns: "http://www.w3.org/2000/svg",
-                        g {
-                            fill: "none",
-                            stroke: "currentColor",
-                            stroke_linecap: "round",
-                            stroke_linejoin: "round",
-                            stroke_width: "2",
-                            path { d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" }
-                        }
-                    }
                 }
                 label { class: "toggle text-base-content",
                     input {
